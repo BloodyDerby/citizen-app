@@ -1,4 +1,6 @@
 var express = require('express');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -9,7 +11,6 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 //Connect to mongoDB database
-const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost/citizen-app');
 
@@ -27,8 +28,7 @@ const userSchema = new Schema({
     minlength: [ 2, 'lastName is too short' ], // Minimum length
     maxlength: 20 // Maximum length
   },
-  role: {
-  	{
+  role: {  	
     type: String,
     enum: ['citizen', 'manager'] // Limit valid values
   },
