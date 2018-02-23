@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-// Define a schema
+// Define a schema for USER
 const userSchema = new Schema({
   firstName: {
     type: String, // Type validation
@@ -22,4 +22,5 @@ const userSchema = new Schema({
   createdAt: { type: Date, default: Date.now  }, // Default value
 });
 
+// Create the model from the schema and export it
 module.exports = mongoose.model('User', userSchema);
