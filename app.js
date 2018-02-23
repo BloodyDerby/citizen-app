@@ -8,6 +8,33 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+//Connect to mongoDB database
+const mongoose = require('mongoose');
+mongoose.Promise = Promise;
+mongoose.connect('mongodb://localhost/citizen-app');
+
+// Define a schema
+const userSchema = new Schema({
+  firstName: {
+    type: String, // Type validation
+    required: true, // Mandatory
+    minlength: [ 2, 'firstName is too short' ], // Minimum length
+    maxlength: 20 // Maximum length
+  },
+  lastName: {
+    type: String, // Type validation
+    required: true, // Mandatory
+    minlength: [ 2, 'lastName is too short' ], // Minimum length
+    maxlength: 20 // Maximum length
+  },
+  role: {
+  	{
+    type: String,
+    enum: ['citizen', 'manager'] // Limit valid values
+  },
+  createdAt: { type: Date, default: Date.now  }, // Default value
+});
+
 var app = express();
 
 // view engine setup
