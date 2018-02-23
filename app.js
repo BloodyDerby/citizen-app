@@ -1,4 +1,6 @@
 var express = require('express');
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
@@ -9,7 +11,6 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 
 //Connect to mongoDB database
-const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost/citizen-app');
 
