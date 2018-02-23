@@ -13,7 +13,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 mongoose.connect('mongodb://localhost/citizen-app');
 
-// Define a schema
+// Define a schema for USER
 const userSchema = new Schema({
   firstName: {
     type: String, // Type validation
@@ -27,12 +27,55 @@ const userSchema = new Schema({
     minlength: [ 2, 'lastName is too short' ], // Minimum length
     maxlength: 20 // Maximum length
   },
-  role: {
-  	{
+  role: {  	
     type: String,
     enum: ['citizen', 'manager'] // Limit valid values
   },
   createdAt: { type: Date, default: Date.now  }, // Default value
+});
+
+// Define a schema for ISSUE
+const issueSchema = new Schema({
+  status: { 
+    default: "new",
+    validate: {
+      // Returns the value if the status is valid (in lower case)
+      validator: function(value) {
+        //if(value !== "new" || value !== "inProgress" || value !== "canceled" || value !== "completed"))
+        if(!["new","inProgress","canceled","completed"].includes(value))
+        return value;
+      },
+      // Custom error message
+      message: 'the input {VALUE} should be new or inProgress or canceled or completed'
+    }
+
+  },
+  description: {
+    type:String,
+    maxlength: 1000 // Maximum length
+  },
+  imageUrl: {
+    
+  },
+  latitude: {
+    
+  },
+  longitude: {
+    
+  },
+  tags: {
+    
+  },
+  user: {
+    
+  },
+  createdAt: { 
+    type: Date, 
+    default: Date.now  
+  }, // Default value
+  updatedAt: {
+    
+  },
 });
 
 var app = express();
