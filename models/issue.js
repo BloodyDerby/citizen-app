@@ -16,7 +16,6 @@ const issueSchema = new Schema({
       // Custom error message
       message: 'the input {VALUE} should be new or inProgress or canceled or completed'
     }
-
   },
   description: {
     type:String,
@@ -47,4 +46,4 @@ const issueSchema = new Schema({
   }
 });
 // Create the model from the schema and export it
-module.exports = mongoose.model('Issue', IssueSchema);
+module.exports = mongoose.model('Issue', issueSchema);
