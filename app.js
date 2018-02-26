@@ -12,7 +12,7 @@ var issues = require('./routes/issues');
 
 //Connect to mongoDB database
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/citizen-app');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/citizen-app');
 
 var app = express();
 
