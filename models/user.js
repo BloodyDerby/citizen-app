@@ -19,8 +19,13 @@ const userSchema = new Schema({
     type: String,
     enum: ['citizen', 'manager'] // Limit valid values
   },
-  createdAt: { type: Date, default: Date.now  }, // Default value
-});
+  createdAt: { 
+  type: Date 
+  },
+},
+  {
+    timestamps: true
+  });
 
 // Create the model from the schema and export it
 module.exports = mongoose.model('User', userSchema);
