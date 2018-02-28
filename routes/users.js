@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
     res.send(users);
   });
 });
+
 /* GET  one user by his pseudo */
 router.get('/:id', function(req, res, next) {   
   User.findOne({ 'username': req.params.id }, function(err, user) {
@@ -46,6 +47,26 @@ router.post('/', function(req, res, next) {
     }
     // Send the saved document in the response
     res.send(savedUser);
+  });
+});
+
+/*UPDATE a user*/
+router.patch('/:id', function(req, res, next){
+  User.findById(req.params.id).exec(function(err, user) {
+    if (err) { 
+      return next(err); 
+    }
+    else if (!user) { 
+      return res.sendStatus(404); 
+    }
+    user.set(req.body);
+    user.save(function(err, updatedUser) {
+      if (err) {
+        return next(err);
+      }
+      // Send the updated document in the response
+      res.send(updatedUser);
+    })    
   });
 });
 

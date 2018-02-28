@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+var idvalidator = require('mongoose-id-validator');
 
 // Define a schema for ISSUE
 const issueSchema = new Schema({
@@ -36,7 +37,9 @@ const issueSchema = new Schema({
     type:[String]
   },
   user: {
-    type:String
+    type: Schema.Types.ObjectId, 
+    ref: 'User',
+    required: true
   },
   createdAt: { 
     type: Date    
@@ -48,5 +51,7 @@ const issueSchema = new Schema({
   {
     timestamps: true
   });
+
+issueSchema.plugin(idvalidator);
 // Create the model from the schema and export it
 module.exports = mongoose.model('Issue', issueSchema);

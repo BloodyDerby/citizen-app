@@ -26,8 +26,6 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-module.exports = router;
-
 /* POST new issue */
 router.post('/', function(req, res, next) {
   // Create a new document from the JSON in the request body
@@ -36,7 +34,7 @@ router.post('/', function(req, res, next) {
   newIssue.save(function(err, savedIssue) {
     if (err) {
       return next(err);
-    }
+    }        
     // Send the saved document in the response
     res.send(savedIssue);
   });
@@ -75,3 +73,5 @@ router.delete('/:id', function(req, res, next) {
     res.send(req.params.id+' has been deleted');
   });
 });
+
+module.exports = router;
