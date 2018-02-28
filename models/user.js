@@ -1,3 +1,4 @@
+//MODEL OF USER
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
@@ -23,7 +24,8 @@ const userSchema = new Schema({
     unique : true
   },
   role: {  	
-    type: String,
+    type: String,    
+    default: 'citizen',
     enum: ['citizen', 'manager'] // Limit valid values
   },
   createdAt: { 

@@ -1,3 +1,4 @@
+//MODEL OF ISSUE
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 var idvalidator = require('mongoose-id-validator');
@@ -27,16 +28,18 @@ const issueSchema = new Schema({
     type:String,
     maxlength: 500
   },
-  latitude: {
+  latitude: {   
+    required: true,
     type:Number
   },
-  longitude: {
+  longitude: { 
+    required: true,
     type:Number
   },
   tags: {
     type:[String]
   },
-  user: {
+  user: { // Id de l'user qui aura l'issue
     type: Schema.Types.ObjectId, 
     ref: 'User',
     required: true

@@ -1,3 +1,4 @@
+//SCHEMA OF ISSUES
 var express = require('express');
 var router = express.Router();
 const Issue = require('../models/issue');
@@ -12,7 +13,7 @@ router.get('/', function(req, res, next) {
   });
 });
 
-/**
+/** 
  * GET issue by id
  * temporaire... pas sécurisé de faire findById
  * Mieux de créer un ID et de faire un findOne
