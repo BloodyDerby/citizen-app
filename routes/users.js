@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const User = require('../models/user');
+const Issue = require('../models/issue');
 
 /* GET users */
 router.get('/', function(req, res, next) {
@@ -31,6 +32,28 @@ router.get('/:id', function(req, res, next) {
     }
     else{
       res.send(user);
+    }    
+  });
+});
+
+/* GET  his issues */
+router.get('/:id/issues', function(req, res, next) {   
+  User.findOne({ 'username': req.params.id }, function(err, user) {
+    if (err) {     
+      return next(err);
+    }
+    else if(!user) // si null undefine ou false
+    {
+      User.findById(req.params.id).exec(function(err, user) {
+          if (err) {
+            return next(err);
+          }  
+          else{
+            Issue.find ({'user': req.params.id}, function (err, issues) {
+              res.send(issues);
+            })            
+          }        
+      });
     }    
   });
 });
