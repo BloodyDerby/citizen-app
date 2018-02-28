@@ -7,21 +7,31 @@ const userSchema = new Schema({
     type: String, // Type validation
     required: true, // Mandatory
     minlength: [ 2, 'firstName is too short' ], // Minimum length
-    maxlength: 20 // Maximum length
+    maxlength: [ 20, 'firstName is too long' ] // Maximum length
   },
   lastName: {
     type: String, // Type validation
     required: true, // Mandatory
     minlength: [ 2, 'lastName is too short' ], // Minimum length
-    maxlength: 20 // Maximum length
+    maxlength: [ 20, 'lastName is too long' ] // Maximum length
+  },
+  username: {
+    type: String, // Type validation
+    required: true, // Mandatory
+    minlength: [ 2, 'pseudo is too short' ], // Minimum length
+    maxlength: [ 30, 'pseudo is too long' ], // Maximum length
+    unique : true
   },
   role: {  	
     type: String,
     enum: ['citizen', 'manager'] // Limit valid values
   },
   createdAt: { 
-  type: Date 
-  },
+    type: Date    
+  }, // Default value
+  updatedAt: {
+    type: Date
+  }
 },
   {
     timestamps: true

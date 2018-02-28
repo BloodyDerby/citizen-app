@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const User = require('../models/user');
 
-/* GET users listing. */
+/* GET users */
 router.get('/', function(req, res, next) {
   User.find().sort('lastName').exec(function(err, users) {
     if (err) {
@@ -11,8 +11,29 @@ router.get('/', function(req, res, next) {
     res.send(users);
   });
 });
+/* GET  one user by his pseudo */
+router.get('/:id', function(req, res, next) {   
+  User.findOne({ 'username': req.params.id }, function(err, user) {
+    if (err) {     
+      return next(err);
+    }
+    else if(!user) // si null undefine ou false
+    {
+      User.findById(req.params.id).exec(function(err, user) {
+          if (err) {
+            return next(err);
+          }  
+          else{
+            res.send(user);
+          }        
+      });
+    }
+    else{
+      res.send(user);
+    }    
+  });
+});
 
-module.exports = router;
 
 /* POST new user */
 router.post('/', function(req, res, next) {
@@ -27,3 +48,5 @@ router.post('/', function(req, res, next) {
     res.send(savedUser);
   });
 });
+
+module.exports = router;
