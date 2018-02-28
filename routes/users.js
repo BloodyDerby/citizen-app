@@ -35,7 +35,6 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
-
 /* POST new user */
 router.post('/', function(req, res, next) {
   // Create a new document from the JSON in the request body
@@ -50,7 +49,7 @@ router.post('/', function(req, res, next) {
   });
 });
 
-/*UPDATE a user*/
+/*UPDATE an user*/
 router.patch('/:id', function(req, res, next){
   User.findById(req.params.id).exec(function(err, user) {
     if (err) { 
@@ -69,5 +68,4 @@ router.patch('/:id', function(req, res, next){
     })    
   });
 });
-
 module.exports = router;
