@@ -18,8 +18,8 @@ const userSchema = new Schema({
   username: {
     type: String, // Type validation
     required: true, // Mandatory
-    minlength: [ 2, 'pseudo is too short' ], // Minimum length
-    maxlength: [ 30, 'pseudo is too long' ], // Maximum length
+    minlength: [ 2, 'username is too short' ], // Minimum length
+    maxlength: [ 30, 'username is too long' ], // Maximum length
     unique : true
   },
   role: {  	
