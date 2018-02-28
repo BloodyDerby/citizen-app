@@ -12,6 +12,20 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/**
+ * GET issue by id
+ * temporaire... pas sécurisé de faire findById
+ * Mieux de créer un ID et de faire un findOne
+ */
+router.get('/:id', function(req, res, next) {
+  Issue.findById(req.params.id).exec(function(err, issues) {
+    if (err) {
+      return next(err);
+    }
+    res.send(issues);
+  });
+});
+
 module.exports = router;
 
 /* POST new issue */
@@ -25,5 +39,39 @@ router.post('/', function(req, res, next) {
     }
     // Send the saved document in the response
     res.send(savedIssue);
+  });
+});
+
+/*UPDATE an issue*/
+router.patch('/:id', function(req, res, next){
+  Issue.findById(req.params.id).exec(function(err, issues) {
+    if (err) { 
+      return next(err); 
+    }
+    else if (!issues) { 
+      return res.sendStatus(404); 
+    }
+    issues.set(req.body);
+    issues.save(function(err, updatedIssue) {
+      if (err) {
+        return next(err);
+      }
+      // Send the updated document in the response
+      res.send(updatedIssue);
+    })    
+  });
+});
+
+/*DELETE an issue*/
+router.delete('/:id', function(req, res, next) {
+  Issue.findById(req.params.id).exec(function(err, issues) {
+    if (err) { 
+      return next(err); 
+    }
+    else if (!issues) { 
+      return res.sendStatus(404); 
+    }
+    Issue.deleteOne({ _id: req.params.id }, function (err) {});
+    res.send(req.params.id+' has been deleted');
   });
 });

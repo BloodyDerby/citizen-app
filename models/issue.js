@@ -10,8 +10,9 @@ const issueSchema = new Schema({
       // Returns the value if the status is valid (in lower case)
       validator: function(value) {
         //if(value !== "new" || value !== "inProgress" || value !== "canceled" || value !== "completed"))
-        if(!["new","inProgress","canceled","completed"].includes(value))
-        return value;
+        if(["new","inProgress","canceled","completed"].includes(value))
+          return true;
+        else return false;
       },
       // Custom error message
       message: 'the input {VALUE} should be new or inProgress or canceled or completed'
