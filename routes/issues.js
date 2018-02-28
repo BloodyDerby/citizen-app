@@ -18,11 +18,11 @@ router.get('/', function(req, res, next) {
  * Mieux de créer un ID et de faire un findOne
  */
 router.get('/:id', function(req, res, next) {
-  Issue.findById(req.params.id).exec(function(err, issues) {
+  Issue.findById(req.params.id).exec(function(err, issue) {
     if (err) {
       return next(err);
     }
-    res.send(issues);
+    res.send(issue);
   });
 });
 
@@ -44,11 +44,11 @@ router.post('/', function(req, res, next) {
 
 /*UPDATE an issue*/
 router.patch('/:id', function(req, res, next){
-  Issue.findById(req.params.id).exec(function(err, issues) {
+  Issue.findById(req.params.id).exec(function(err, issue) {
     if (err) { 
       return next(err); 
     }
-    else if (!issues) { 
+    else if (!issue) { 
       return res.sendStatus(404); 
     }
     issues.set(req.body);
@@ -64,11 +64,11 @@ router.patch('/:id', function(req, res, next){
 
 /*DELETE an issue*/
 router.delete('/:id', function(req, res, next) {
-  Issue.findById(req.params.id).exec(function(err, issues) {
+  Issue.findById(req.params.id).exec(function(err, issue) {
     if (err) { 
       return next(err); 
     }
-    else if (!issues) { 
+    else if (!issue) { 
       return res.sendStatus(404); 
     }
     Issue.deleteOne({ _id: req.params.id }, function (err) {});
