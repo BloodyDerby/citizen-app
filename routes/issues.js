@@ -50,8 +50,8 @@ router.patch('/:id', function(req, res, next){
     else if (!issue) { 
       return res.sendStatus(404); 
     }
-    issues.set(req.body);
-    issues.save(function(err, updatedIssue) {
+    issue.set(req.body);
+    issue.save(function(err, updatedIssue) {
       if (err) {
         return next(err);
       }
