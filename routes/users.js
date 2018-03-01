@@ -140,23 +140,4 @@ router.patch('/:id', function(req, res, next){
     })    
   });
 });
-
-function sortIssueByUser(users, callback){
-  if (users.length<=0){
-    return callback(undefined,[]);
-  }
-  Issue.aggregate([
-    {
-      $match:{
-        user:{
-          $in: users.map(user => users._id)
-        }
-      }
-    }
-
-  ])
-
-
-}
-
 module.exports = router;
