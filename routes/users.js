@@ -85,6 +85,28 @@ router.get('/:id', function(req, res, next) {
   });
 });
 
+/* GET  his issues */
+router.get('/:id/issues', function(req, res, next) {   
+  User.findOne({ 'username': req.params.id }, function(err, user) {
+    if (err) {     
+      return next(err);
+    }
+    else if(!user) // si null undefine ou false
+    {
+      User.findById(req.params.id).exec(function(err, user) {
+          if (err) {
+            return next(err);
+          }  
+          else{
+            Issue.find ({'user': req.params.id}, function (err, issues) {
+              res.send(issues);
+            })            
+          }        
+      });
+    }    
+  });
+});
+
 /* POST new user */
 router.post('/', function(req, res, next) {
   // Create a new document from the JSON in the request body
