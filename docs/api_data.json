@@ -1,9 +1,444 @@
 [
   {
+    "type": "delete",
+    "url": "/issues/:id",
+    "title": "Delete an issue.",
+    "name": "DeleteIssue",
+    "group": "Issue",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Unique identifier of the issue</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Id has been deleted</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Not Found 404": [
+          {
+            "group": "Not Found 404",
+            "optional": false,
+            "field": "IssueNotFound",
+            "description": "<p>The <code>id</code> of the Issue was not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/issues.js",
+    "groupTitle": "Issue"
+  },
+  {
+    "type": "get",
+    "url": "/issues/:id",
+    "title": "Request an issue's informations",
+    "name": "GetIssue",
+    "group": "Issue",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Unique identifier of the issue</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "allowedValues": [
+              "\"new\"",
+              "\"inProgress\"",
+              "\"canceled\"",
+              "\"completed\""
+            ],
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status of the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "tags",
+            "description": "<p>Tags to describe the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Id of the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Detailed description of the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "latitude",
+            "description": "<p>Part of the coordinates indicating where the issue is</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "longitude",
+            "description": "<p>Part of the coordinates indicating where the issue is</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user",
+            "description": "<p>The user who reported the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "createdAt",
+            "description": "<p>Date of creation of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "updatedAt",
+            "description": "<p>Date of update of the user</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Not Found 404": [
+          {
+            "group": "Not Found 404",
+            "optional": false,
+            "field": "IssueNotFound",
+            "description": "<p>The <code>id</code> of the Issue was not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/issues.js",
+    "groupTitle": "Issue"
+  },
+  {
+    "type": "get",
+    "url": "/issues",
+    "title": "Request all the issues informations",
+    "name": "GetIssues",
+    "group": "Issue",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "allowedValues": [
+              "\"new\"",
+              "\"inProgress\"",
+              "\"canceled\"",
+              "\"completed\""
+            ],
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status of the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "tags",
+            "description": "<p>Tags to describe the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Id of the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Detailed description of the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "latitude",
+            "description": "<p>Part of the coordinates indicating where the issue is</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "longitude",
+            "description": "<p>Part of the coordinates indicating where the issue is</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user",
+            "description": "<p>The user who reported the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "createdAt",
+            "description": "<p>Date of creation of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "updatedAt",
+            "description": "<p>Date of update of the user</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/issues.js",
+    "groupTitle": "Issue"
+  },
+  {
+    "type": "patch",
+    "url": "/issues/:id",
+    "title": "Update an issue",
+    "name": "PatchIssue",
+    "group": "Issue",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Unique identifier of the issue</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>You can update an issue's property.</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "            {\n    \"status\": \"inProgress\"\n}",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success Response Example:",
+          "content": "            {\n    \"status\": \"inProgress\",\n    \"tags\": [],\n    \"_id\": \"5ab3c23c9d4f4523182e8461\",\n    \"latitude\": 10,\n    \"longitude\": 15,\n    \"user\": \"5a96982352340b2244823473\",\n    \"createdAt\": \"2018-03-22T14:48:28.865Z\",\n    \"updatedAt\": \"2018-03-22T14:57:42.107Z\",\n    \"__v\": 0\n}",
+          "type": "js"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Unprocessable Entity 422": [
+          {
+            "group": "Unprocessable Entity 422",
+            "optional": false,
+            "field": "IssueValidation",
+            "description": "<p>You can update an issue on changing his status  from &quot;new&quot; to &quot;inProgress&quot; to indicate that a city employee is working on the issue, from &quot;new&quot; or &quot;inProgress&quot; to &quot;canceled&quot; to indicate that a city employee has determined this is not a real issue, or from &quot;inProgress&quot; to &quot;completed&quot; to indicate that the issue has been resolved.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/issues.js",
+    "groupTitle": "Issue"
+  },
+  {
+    "type": "post",
+    "url": "/issues",
+    "title": "Create a new issue",
+    "name": "PostIssue",
+    "group": "Issue",
+    "description": "<p>The User's id, the latitude and longitude is required.</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{\n    \"description\": \"This is a description\",\n    \"latitude\": 10,\n    \"longitude\": 15,\n    \"user\": \"5a96982352340b2244823473\"\n   }",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success Response Example:",
+          "content": "{\n    \"description\": \"This is a description\",\n    \"latitude\": 10,\n    \"longitude\": 15,\n    \"user\": \"5a96982352340b2244823473\",\n    \"status\": \"new\",\n    \"tags\": [],\n    \"_id\": \"5ab3c0947547b02a24a19467\",\n    \"createdAt\": \"2018-03-22T14:41:25.610Z\",\n    \"updatedAt\": \"2018-03-22T14:41:25.610Z\",\n    \"__v\": 0\n  }",
+          "type": "js"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Unprocessable Entity 422": [
+          {
+            "group": "Unprocessable Entity 422",
+            "optional": false,
+            "field": "IssueValidation",
+            "description": "<p>The <code>latitude</code> or <code>longitude</code> must be a The <code>user</code> must be an existing id. The <code>status</code> must be &quot;new&quot;, &quot;inProgress&quot;, &quot;canceled&quot; or &quot;completed&quot;.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/issues.js",
+    "groupTitle": "Issue"
+  },
+  {
     "type": "get",
     "url": "/users/:id",
     "title": "Request a user's information",
     "name": "GetUser",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Unique identifier of the user</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username of the user</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "allowedValues": [
+              "\"citizen\"",
+              "\"manager\""
+            ],
+            "optional": false,
+            "field": "role",
+            "description": "<p>Role of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Id of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "firstName",
+            "description": "<p>First name of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "lastName",
+            "description": "<p>Last name of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "createdAt",
+            "description": "<p>Date of creation of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "updatedAt",
+            "description": "<p>Date of update of the user</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Not Found 404": [
+          {
+            "group": "Not Found 404",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The <code>id</code> or <code>username</code> of the User was not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/users/:id/issues",
+    "title": "Request a user's issues",
+    "name": "GetUserIssues",
     "group": "User",
     "parameter": {
       "fields": {
@@ -24,6 +459,110 @@
           {
             "group": "Success 200",
             "type": "String",
+            "allowedValues": [
+              "\"new\"",
+              "\"inProgress\"",
+              "\"canceled\"",
+              "\"completed\""
+            ],
+            "optional": false,
+            "field": "status",
+            "description": "<p>Status of the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "tags",
+            "description": "<p>Tags to describe the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "description",
+            "description": "<p>Detailed description of the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "latitude",
+            "description": "<p>Part of the coordinates indicating where the issue is</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "longitude",
+            "description": "<p>Part of the coordinates indicating where the issue is</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "user",
+            "description": "<p>The user who reported the issue</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "createdAt",
+            "description": "<p>Date of creation of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "updatedAt",
+            "description": "<p>Date of update of the user</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Not Found 404": [
+          {
+            "group": "Not Found 404",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The <code>id</code> or <code>username</code> of the User was not found.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "get",
+    "url": "/users",
+    "title": "Request all the users informations",
+    "name": "GetUsers",
+    "group": "User",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "role",
+            "description": "<p>Role of the user (citizen or manager)</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Number",
+            "optional": false,
+            "field": "_id",
+            "description": "<p>Id of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
             "optional": false,
             "field": "firstName",
             "description": "<p>First name of the user</p>"
@@ -34,12 +573,140 @@
             "optional": false,
             "field": "lastName",
             "description": "<p>Last name of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "username",
+            "description": "<p>Username of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "createdAt",
+            "description": "<p>Date of creation of the user</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "Date",
+            "optional": false,
+            "field": "updatedAt",
+            "description": "<p>Date of update of the user</p>"
           }
         ]
       }
     },
     "version": "0.0.0",
-    "filename": "routes/index.js",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "patch",
+    "url": "/users/:id",
+    "title": "Update a user",
+    "name": "PatchUser",
+    "group": "User",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Unique identifier of the user</p>"
+          }
+        ]
+      }
+    },
+    "description": "<p>You can update the username, lastName, firstname and role of a user.</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{                \n    \"firstName\": \"Test1\"\n}",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success Response Example:",
+          "content": "{\n      \"role\": \"citizen\",\n      \"_id\": \"5ab3a8d5154b314164bba7fe\",\n      \"firstName\": \"Test3\",\n      \"lastName\": \"Test2\",\n      \"username\": \"Test4\",\n      \"createdAt\": \"2018-03-22T13:00:05.130Z\",\n      \"updatedAt\": \"2018-03-22T14:14:46.312Z\",\n      \"__v\": 0\n  }",
+          "type": "js"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Not Found 404": [
+          {
+            "group": "Not Found 404",
+            "optional": false,
+            "field": "UserNotFound",
+            "description": "<p>The <code>id</code> or <code>username</code> of the User was not found.</p>"
+          }
+        ],
+        "Unprocessable Entity 422": [
+          {
+            "group": "Unprocessable Entity 422",
+            "optional": false,
+            "field": "UserValidation",
+            "description": "<p>The <code>firstname</code> <code>lastname</code> or <code>username</code> must contains at least 2 characters. The <code>role</code> must be 'citizen' or 'manager'</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
+    "groupTitle": "User"
+  },
+  {
+    "type": "post",
+    "url": "/users",
+    "title": "Create a new user",
+    "name": "PostUser",
+    "group": "User",
+    "description": "<p>The username, lastName and firstName is required.</p> <p>By default the role of a user is 'citizen', but it can be changed for 'manager'.</p>",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "{                \n    \"firstName\": \"Test1\",\n    \"lastName\": \"Test2\",\n    \"username\": \"Test3\"\n   }",
+        "type": "js"
+      }
+    ],
+    "success": {
+      "examples": [
+        {
+          "title": "Success Response Example:",
+          "content": "{\n      \"role\": \"citizen\",\n      \"firstName\": \"Test1\",\n      \"lastName\": \"Test2\",\n      \"username\": \"Test3\",\n      \"_id\": \"5ab3a3aad091cb429cf55d14\",\n      \"createdAt\": \"2018-03-22T12:38:02.344Z\",\n      \"updatedAt\": \"2018-03-22T12:38:02.344Z\",\n      \"__v\": 0\n    }",
+          "type": "js"
+        }
+      ]
+    },
+    "error": {
+      "fields": {
+        "Conflict 409": [
+          {
+            "group": "Conflict 409",
+            "optional": false,
+            "field": "UserExistant",
+            "description": "<p>The <code>firstname</code> <code>lastname</code> or <code>username</code> already exists.</p>"
+          }
+        ],
+        "Unprocessable Entity 422": [
+          {
+            "group": "Unprocessable Entity 422",
+            "optional": false,
+            "field": "UserValidation",
+            "description": "<p>The <code>firstname</code> <code>lastname</code> or <code>username</code> must contains at least 2 characters. The <code>role</code> must be 'citizen' or 'manager'</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/users.js",
     "groupTitle": "User"
   }
 ]

@@ -8,13 +8,15 @@ const userSchema = new Schema({
     type: String, // Type validation
     required: true, // Mandatory
     minlength: [ 2, 'firstName is too short' ], // Minimum length
-    maxlength: [ 20, 'firstName is too long' ] // Maximum length
+    maxlength: [ 20, 'firstName is too long' ], // Maximum length
+    unique : true
   },
   lastName: {
     type: String, // Type validation
     required: true, // Mandatory
     minlength: [ 2, 'lastName is too short' ], // Minimum length
-    maxlength: [ 20, 'lastName is too long' ] // Maximum length
+    maxlength: [ 20, 'lastName is too long' ], // Maximum length
+    unique : true
   },
   username: {
     type: String, // Type validation
